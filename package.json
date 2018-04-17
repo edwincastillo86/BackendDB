@@ -15,8 +15,8 @@
   "bugs": {
     "url": "https://github.com/edwincastillo86/BackendDB/issues"
   },
-  "homepage": "https://github.com/edwincastillo86/BackendDB#readme"
-  ,"dependencies": {
-    "express": "4.13.4"
+  "homepage": "https://github.com/edwincastillo86/BackendDB#readme",
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }
