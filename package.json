@@ -1,0 +1,22 @@
+{
+  "name": "backenddb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwincastillo86/BackendDB.git"
+  },
+  "author": "edwin castillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edwincastillo86/BackendDB/issues"
+  },
+  "homepage": "https://github.com/edwincastillo86/BackendDB#readme"
+  ,"dependencies": {
+    "express": "4.13.4"
+  }
+}
