@@ -66,7 +66,7 @@ app.post('/crearuser', function(req, res) {
         //        .catch(handleError);
         //};
 
-        newContact(email);
+        //newContact(email);
 
         function testEmail(text) {
             correo = {};
