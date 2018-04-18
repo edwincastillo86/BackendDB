@@ -60,11 +60,11 @@ app.post('/crearuser', function(req, res) {
         };
 
 
-        function newContact(email) {
-            mailJet.post('contact')
-                .request({Email: email})
-                .catch(handleError);
-        };
+        //function newContact(email) {
+        //    mailJet.post('contact')
+        //        .request({Email: email})
+        //        .catch(handleError);
+        //};
 
         newContact(email);
 
