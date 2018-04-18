@@ -51,20 +51,20 @@ app.post('/crearuser', function(req, res) {
         const mailJet = require ('node-mailjet')
             .connect('39e245f12b88b01def3370f4c837b565',  '373283c5c60ab1556a9ac94ca0c0092e', {
                 url: 'api.mailjet.com', // default is the API url
-                version: 'v3.1', // default is '/v3'
+                version: 'v3', // default is '/v3'
                 perform_api_call: true // used for tests. default is true
          })
 
         function handleError(err) {
             throw new Error(err.ErrorMessage);
-        }
+        };
 
 
         function newContact(email) {
             mailJet.post('contact')
                 .request({Email: email})
                 .catch(handleError);
-        }
+        };
 
         newContact(email);
 
@@ -78,7 +78,7 @@ app.post('/crearuser', function(req, res) {
             mailJet.post('send')
                 .request(correo)
                 .catch(handleError);
-        }
+        };
 
         testEmail('Gracias por Registrarse');
 
