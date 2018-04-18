@@ -70,8 +70,8 @@ app.post('/crearuser', function(req, res) {
 
         function testEmail(text) {
             correo = {};
-            correo.FromName = 'edn.castillo@gmail.com';
-            correo.FromEmail = email;
+            correo.FromName = 'aywjdahff@lists.mailjet.com';
+            correo.to = email;
             correo.Subject = 'Precio Justo registro de nuevo usuario';
             correo['Text-Part'] = text;
 
@@ -82,7 +82,7 @@ app.post('/crearuser', function(req, res) {
 
         testEmail('Gracias por Registrarse');
 
-        res.send("Se envio un correo a su buzón " + email);
+        res.send("Se envio un correo a su buzon " + email);
     }
     else
     {
