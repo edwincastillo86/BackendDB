@@ -23,8 +23,72 @@ app.get('/registro:email', function(request, response) {
 app.post('/crearuser', function(req, res) {
     var nombre = req.body.nombre;
     var email = req.body.email;
+    var msgValorRequerido = "Todos los valores son requeridos";
+    var validacion = true;
 
-    res.send('Datos: ' + nombre + ' ' + email);
+    console.log(nombre)
+    if (nombre == undefined) {
+        validacion = false;
+    }
+    else {
+        if (nombre.length = 0) {
+            validacion = false;
+        }
+    }
+
+    if (email == undefined) {
+        validacion = false;
+
+    }
+    else if (email.length = 0) {
+        validacion = false;
+    }
+
+
+    if (validacion) {
+
+
+        const mailJet = require ('node-mailjet')
+            .connect('39e245f12b88b01def3370f4c837b565',  '373283c5c60ab1556a9ac94ca0c0092e', {
+                url: 'api.mailjet.com', // default is the API url
+                version: 'v3.1', // default is '/v3'
+                perform_api_call: true // used for tests. default is true
+         })
+
+        function handleError(err) {
+            throw new Error(err.ErrorMessage);
+        }
+
+
+        function newContact(email) {
+            mailJet.post('contact')
+                .request({Email: email})
+                .catch(handleError);
+        }
+
+        newContact(email);
+
+        function testEmail(text) {
+            correo = {};
+            correo.FromName = 'edn.castillo@gmail.com';
+            correo.FromEmail = email;
+            correo.Subject = 'Precio Justo registro de nuevo usuario';
+            correo['Text-Part'] = text;
+
+            mailJet.post('send')
+                .request(correo)
+                .catch(handleError);
+        }
+
+        testEmail('Gracias por Registrarse');
+
+        res.send("Se envio un correo a su buzón " + email);
+    }
+    else
+    {
+        res.send(msgValorRequerido);
+    }
+
 });
 
 
