@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -26,12 +26,14 @@ app.post('/crearuser', function(req, res) {
     var msgValorRequerido = "Todos los valores son requeridos";
     var validacion = true;
 
-    console.log(nombre)
+    console.log(nombre);
+
     if (nombre == undefined) {
         validacion = false;
     }
     else {
-        if (nombre.length = 0) {
+        if (nombre.length == 0)
+        {
             validacion = false;
         }
     }
@@ -40,56 +42,46 @@ app.post('/crearuser', function(req, res) {
         validacion = false;
 
     }
-    else if (email.length = 0) {
-        validacion = false;
+    else
+    {
+        if (email.length == 0)
+        {
+            validacion = false;
+        }
+
     }
 
 
-    if (validacion) {
+    if (validacion==true)
+    {
+        var helper = require('sendgrid').mail;
+        var from_email = new helper.Email('edn_hack@hotmail.com');
+        var to_email = new helper.Email(email);
+        var subject = 'Hello World from the SendGrid Node.js Library!';
+        var content = new helper.Content('text/plain', 'Hello, Email!');
+        var mail = new helper.Mail(from_email, subject, to_email, content);
 
+        var sg = require('sendgrid')('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');
+        var request = sg.emptyRequest({
+            method: 'POST',
+            path: '/v3/mail/send',
+            body: mail.toJSON()
+        });
 
-        const mailJet = require ('node-mailjet')
-            .connect('39e245f12b88b01def3370f4c837b565',  '373283c5c60ab1556a9ac94ca0c0092e', {
-                url: 'api.mailjet.com', // default is the API url
-                version: 'v3', // default is '/v3'
-                perform_api_call: true // used for tests. default is true
-         })
-
-        function handleError(err) {
-            throw new Error(err.ErrorMessage);
-        };
-
-
-        //function newContact(email) {
-        //    mailJet.post('contact')
-        //        .request({Email: email})
-        //        .catch(handleError);
-        //};
-
-        //newContact(email);
-
-        function testEmail(text) {
-            correo = {};
-            correo.FromName = 'aywjdahff@lists.mailjet.com';
-            correo.to = email;
-            correo.Subject = 'Precio Justo registro de nuevo usuario';
-            correo['Text-Part'] = text;
-
-            mailJet.post('send')
-                .request(correo)
-                .catch(handleError);
-        };
-
-        testEmail('Gracias por Registrarse');
+        sg.API(request, function(error, response) {
+            console.log(response.statusCode);
+            console.log(response.body);
+            console.log(response.headers);
+        });
 
         res.send("Se envio un correo a su buzon " + email);
     }
     else
     {
-        res.send(msgValorRequerido);
+        res.send(msgValorRequerido)
     }
 
-});
+})
 
 
 app.listen(app.get('port'), function() {

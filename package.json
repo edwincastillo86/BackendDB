@@ -9,7 +9,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.13.3",
-    "node-mailjet": "^3.2.1"
+    "sendemail": "^3.4.0",
+    "sendgrid": "^5.2.3"
   },
   "engines": {
     "node": "4.0.0"
