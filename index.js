@@ -57,8 +57,8 @@ app.post('/crearuser', function(req, res) {
         var helper = require('sendgrid').mail;
         var from_email = new helper.Email('edn_hack@hotmail.com');
         var to_email = new helper.Email(email);
-        var subject = 'Hello World from the SendGrid Node.js Library!';
-        var content = new helper.Content('text/plain', 'Hello, Email!');
+        var subject = 'Confirmación de email para registrarse en Precio Justo !';
+        var content = new helper.Content('text/plain', 'Hola! '+ nombre + ', para dar de alta tu cuenta ingrese el codigo confirmación. 0001' );
         var mail = new helper.Mail(from_email, subject, to_email, content);
 
         var sg = require('sendgrid')('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');
